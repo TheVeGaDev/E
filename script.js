@@ -479,3 +479,177 @@ function initThreeJSBackground() {
 
 // Initialize enhanced background
 window.addEventListener('load', initThreeJSBackground);
+
+// Advanced Animations
+function initAdvancedAnimations() {
+    // Add floating elements
+    const floatingElements = document.querySelectorAll('.floating-element');
+    floatingElements.forEach(element => {
+        element.style.animationDelay = `${Math.random() * 2}s`;
+    });
+
+    // Add glow effects on scroll
+    const glowElements = document.querySelectorAll('.glow-effect');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    glowElements.forEach(element => {
+        observer.observe(element);
+    });
+
+    // Add magnetic button effect
+    const magneticButtons = document.querySelectorAll('.magnetic-btn');
+    magneticButtons.forEach(button => {
+        button.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const deltaX = (x - centerX) / centerX;
+            const deltaY = (y - centerY) / centerY;
+            
+            this.style.transform = `translate(${deltaX * 10}px, ${deltaY * 10}px)`;
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translate(0, 0)';
+        });
+    });
+
+    // Add typing animation
+    const typingElements = document.querySelectorAll('.typing-text');
+    typingElements.forEach(element => {
+        const text = element.textContent;
+        element.textContent = '';
+        element.style.width = '0';
+        
+        setTimeout(() => {
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            typeWriter();
+        }, 1000);
+    });
+
+    // Add liquid button effect
+    const liquidButtons = document.querySelectorAll('.liquid-btn');
+    liquidButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.classList.add('active');
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.classList.remove('active');
+        });
+    });
+
+    // Add neon glow effect
+    const neonElements = document.querySelectorAll('.neon-glow');
+    neonElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.animation = 'neonPulse 0.5s infinite alternate';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.animation = 'neonPulse 2s infinite alternate';
+        });
+    });
+}
+
+// Initialize advanced animations
+document.addEventListener('DOMContentLoaded', initAdvancedAnimations);
+
+// Parallax scrolling effect
+function initParallax() {
+    const parallaxElements = document.querySelectorAll('.parallax-layer');
+    
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.speed || 0.5;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+}
+
+// Initialize parallax
+initParallax();
+
+// Gradient text animation
+function initGradientText() {
+    const gradientTexts = document.querySelectorAll('.text-shimmer');
+    
+    gradientTexts.forEach(text => {
+        text.style.animationDelay = `${Math.random() * 2}s`;
+    });
+}
+
+// Initialize gradient text
+initGradientText();
+
+// Morphing shapes
+function initMorphingShapes() {
+    const morphingShapes = document.querySelectorAll('.morphing-shape');
+    
+    morphingShapes.forEach(shape => {
+        shape.style.animationDelay = `${Math.random() * 3}s`;
+    });
+}
+
+// Initialize morphing shapes
+initMorphingShapes();
+
+// Hover 3D effect
+function initHover3D() {
+    const hover3DElements = document.querySelectorAll('.hover-3d');
+    
+    hover3DElements.forEach(element => {
+        element.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateY = (x - centerX) / centerX * 10;
+            const rotateX = (centerY - y) / centerY * 10;
+            
+            this.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(20px)`;
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
+        });
+    });
+}
+
+// Initialize hover 3D
+initHover3D();
+
+// Gradient border animation
+function initGradientBorder() {
+    const gradientBorders = document.querySelectorAll('.gradient-border');
+    
+    gradientBorders.forEach(border => {
+        border.style.animationDelay = `${Math.random() * 2}s`;
+    });
+}
+
+// Initialize gradient border
+initGradientBorder();
