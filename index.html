@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النسر الذهبي - أفضل شركة نقل أثاث بمدينة نصر | 01116870575</title>
-    <meta name="description" content="شركة النسر الذهبي أفضل شركة نقل أثاث بمدينة نصر. فك وتركيب، تغليف آمن، نقل مضمون. أسعار منافسة وخدمة 24 ساعة. اتصل الآن">
-    <meta name="keywords" content="شركة نقل اثاث مدينة نصر, نقل عفش, فك وتركيب أثاث, نقل مكتبي, تغليف أثاث, شركة نقل موثوقة">
-    <meta name="author" content="النسر الذهبي">
+    <title>النسر الذهبي - تجربة جديدة لنقل الأثاث</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,224 +21,203 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <link rel="stylesheet" href="new-style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- Floating Background Elements -->
-    <div id="floatingElements"></div>
-    
-    <!-- 3D Background -->
-    <div id="threeContainer"></div>
-    
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-content">
-            <div class="logo-loader">
-                <div class="logo-animation">
-                    <div class="eagle-wings">
-                        <div class="wing left"></div>
-                        <div class="wing right"></div>
-                    </div>
-                    <div class="crown">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                </div>
-                <span>النسر الذهبي</span>
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- 3D Background Canvas -->
+    <div id="threejs-background" class="fixed top-0 left-0 w-full h-full -z-10"></div>
+
+    <!-- Animated Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-gradient-to-br from-emerald-900 to-green-800 z-50 flex items-center justify-center">
+        <div class="text-center text-white">
+            <div class="logo-loader animate-bounce mb-8">
+                <i class="fas fa-crown text-6xl text-yellow-400"></i>
             </div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
+            <h2 class="text-3xl font-bold mb-4">النسر الذهبي</h2>
+            <div class="w-64 h-2 bg-green-700 rounded-full overflow-hidden">
+                <div class="h-full bg-yellow-400 loading-progress"></div>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-crown"></i>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect py-4" id="mainNav">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center logo-icon">
+                        <i class="fas fa-crown text-white"></i>
                     </div>
-                    <span>النسر الذهبي</span>
+                    <span class="text-white text-xl font-bold">النسر الذهبي</span>
                 </div>
                 
-                <nav class="nav-menu">
-                    <a href="#hero" class="nav-link">
-                        <span class="link-text">الرئيسية</span>
-                        <div class="link-hover"></div>
-                    </a>
-                    <a href="#services" class="nav-link">
-                        <span class="link-text">خدماتنا</span>
-                        <div class="link-hover"></div>
-                    </a>
-                    <a href="#gallery" class="nav-link">
-                        <span class="link-text">معرض الأعمال</span>
-                        <div class="link-hover"></div>
-                    </a>
-                    <a href="#why-us" class="nav-link">
-                        <span class="link-text">لماذا نحن</span>
-                        <div class="link-hover"></div>
-                    </a>
-                    <a href="#contact" class="nav-link">
-                        <span class="link-text">اتصل بنا</span>
-                        <div class="link-hover"></div>
-                    </a>
-                </nav>
-                
-                <div class="contact-header">
-                    <a href="tel:01116870575" class="phone-link">
-                        <div class="icon-container">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <span>اتصل الآن</span>
-                        <div class="notification-badge pulse">جديد</div>
-                    </a>
-                    <a href="https://wa.me/201116870575" class="whatsapp-link" target="_blank">
-                        <div class="icon-container">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <span>واتساب</span>
-                        <div class="notification-badge pulse">3</div>
-                    </a>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="#home" class="nav-link text-white hover:text-yellow-300 transition-all duration-300">الرئيسية</a>
+                    <a href="#services" class="nav-link text-white hover:text-yellow-300 transition-all duration-300">خدماتنا</a>
+                    <a href="#gallery" class="nav-link text-white hover:text-yellow-300 transition-all duration-300">معرض الأعمال</a>
+                    <a href="#contact" class="nav-link text-white hover:text-yellow-300 transition-all duration-300">اتصل بنا</a>
                 </div>
                 
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <a href="tel:01116870575" class="bg-yellow-500 hover:bg-yellow-600 text-green-900 px-6 py-2 rounded-full font-bold transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-phone ml-2"></i>
+                        اتصل الآن
+                    </a>
+                    <button class="md:hidden text-white text-2xl" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-64 bg-green-900 z-40 transform translate-x-full transition-transform duration-300 md:hidden">
+        <div class="p-6">
+            <button class="text-white text-2xl mb-8" id="closeMenuBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="flex flex-col space-y-6">
+                <a href="#home" class="text-white text-lg border-b border-green-700 pb-2">الرئيسية</a>
+                <a href="#services" class="text-white text-lg border-b border-green-700 pb-2">خدماتنا</a>
+                <a href="#gallery" class="text-white text-lg border-b border-green-700 pb-2">معرض الأعمال</a>
+                <a href="#contact" class="text-white text-lg border-b border-green-700 pb-2">اتصل بنا</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-background">
-            <div class="hero-overlay"></div>
-            <div class="hero-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-                <div class="shape shape-4"></div>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge floating">
-                    <span>أفضل شركة نقل أثاث في مصر</span>
+    <section id="home" class="min-h-screen relative flex items-center justify-center pt-20">
+        <div class="absolute inset-0 gradient-bg"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center text-white">
+                <!-- Floating Elements -->
+                <div class="floating-element-1 absolute top-20 left-20 w-20 h-20 bg-yellow-400 rounded-full opacity-20"></div>
+                <div class="floating-element-2 absolute bottom-40 right-32 w-16 h-16 bg-green-400 rounded-full opacity-30"></div>
+                <div class="floating-element-3 absolute top-1/3 right-1/4 w-12 h-12 bg-white rounded-full opacity-10"></div>
+                
+                <div class="hero-badge bg-yellow-500 text-green-900 px-6 py-3 rounded-full inline-block mb-8 font-bold">
+                    🏆 أفضل شركة نقل أثاث في مصر
                 </div>
                 
-                <h1 class="hero-title">
-                    <span class="title-line">
-                        <span class="highlight">النسر الذهبي</span>
-                    </span>
-                    <span class="title-line">لنقل الأثاث والأمتعة</span>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">
+                    <span class="block">النسر الذهبي</span>
+                    <span class="text-yellow-400">لنقل الأثاث</span>
                 </h1>
                 
-                <p class="hero-subtitle">نقل آمن - فك وتركيب احترافي - تغليف متقن - أسعار منافسة</p>
-                
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number" data-count="500">0</div>
-                        <div class="stat-label">عملاء سعداء</div>
+                <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed">
+                    خبرة أكثر من 10 سنوات في نقل الأثاث باحترافية وأمان تام. 
+                    <span class="text-yellow-300">ضمان 100% على جميع محتوياتك</span>
+                </p>
+
+                <!-- Animated Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="stat-card glass-effect p-6 rounded-2xl">
+                        <div class="text-4xl font-bold text-yellow-400 mb-2 stat-counter" data-count="500">0</div>
+                        <div class="text-white">عماء سعداء</div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number" data-count="1200">0</div>
-                        <div class="stat-label">عملية نقل</div>
+                    <div class="stat-card glass-effect p-6 rounded-2xl">
+                        <div class="text-4xl font-bold text-yellow-400 mb-2 stat-counter" data-count="1200">0</div>
+                        <div class="text-white">عملية نقل ناجحة</div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number" data-count="24">0</div>
-                        <div class="stat-label">ساعة خدمة</div>
+                    <div class="stat-card glass-effect p-6 rounded-2xl">
+                        <div class="text-4xl font-bold text-yellow-400 mb-2 stat-counter" data-count="24">0</div>
+                        <div class="text-white">ساعة خدمة</div>
                     </div>
                 </div>
 
-                <div class="hero-features">
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <span>ضمان الحماية الكاملة</span>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <span>خدمة 24 ساعة</span>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <span>فك وتركيب احترافي</span>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <span>نقل سريع وآمن</span>
-                    </div>
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="tel:01116870575" class="cta-btn bg-yellow-500 hover:bg-yellow-600 text-green-900 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                        <i class="fas fa-phone ml-2"></i>
+                        اتصل الآن - 01116870575
+                    </a>
+                    <a href="https://wa.me/201116870575" class="cta-btn bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                        <i class="fab fa-whatsapp ml-2"></i>
+                        محادثة واتساب
+                    </a>
                 </div>
 
-                <div class="cta-buttons">
-                    <a href="tel:01116870575" class="btn btn-primary magnetic">
-                        <div class="btn-content">
-                            <i class="fas fa-phone"></i>
-                            اتصل الآن
-                        </div>
-                        <div class="btn-background"></div>
-                    </a>
-                    <a href="https://wa.me/201116870575" class="btn btn-secondary magnetic" target="_blank">
-                        <div class="btn-content">
-                            <i class="fab fa-whatsapp"></i>
-                            راسلنا على واتساب
-                        </div>
-                        <div class="btn-background"></div>
-                    </a>
-                    <a href="#services" class="btn btn-outline magnetic">
-                        <div class="btn-content">
-                            <i class="fas fa-list"></i>
-                            استعرض الخدمات
-                        </div>
-                        <div class="btn-background"></div>
-                    </a>
+                <!-- Scroll Indicator -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                    <div class="scroll-indicator w-6 h-10 border-2 border-white rounded-full flex justify-center">
+                        <div class="w-1 h-3 bg-yellow-400 rounded-full mt-2 scroll-dot"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- Rest of the sections remain similar but with new animation classes -->
-    <!-- Services, Process, Gallery, Why Us, Testimonials, Contact, Footer -->
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-green-900 mb-6">خدماتنا المتكاملة</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">نقدم مجموعة متكاملة من خدمات نقل الأثاث بأعلى معايير الجودة والأمان</p>
+            </div>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/201116870575" class="whatsapp-float magnetic" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <div class="float-notification pulse">3</div>
-    </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card group bg-gradient-to-br from-green-50 to-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4">
+                    <div class="service-icon w-20 h-20 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-truck-moving text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-900 mb-4">نقل الأثاث المنزلي</h3>
+                    <p class="text-gray-600 mb-6">نقل آمن لجميع أنواع الأثاث المنزلي مع فريق محترف ومدرب على أعلى مستوى</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-600 font-bold">ابدأ من 500 جنيه</span>
+                        <button class="service-btn bg-green-700 hover:bg-green-800 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 group-hover:w-32">
+                            <span class="hidden group-hover:inline ml-2">اطلب الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
 
-    <!-- Quick Call -->
-    <a href="tel:01116870575" class="call-float magnetic">
-        <i class="fas fa-phone"></i>
-        <div class="float-notification pulse">جديد</div>
-    </a>
+                <!-- Service Card 2 -->
+                <div class="service-card group bg-gradient-to-br from-green-50 to-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4">
+                    <div class="service-icon w-20 h-20 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-box-open text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-900 mb-4">التغليف والتعبئة</h3>
+                    <p class="text-gray-600 mb-6">تغليف احترافي بمواد عالية الجودة لحماية أثاثك من الخدوش والتلف</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-600 font-bold">ابدأ من 200 جنيه</span>
+                        <button class="service-btn bg-green-700 hover:bg-green-800 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 group-hover:w-32">
+                            <span class="hidden group-hover:inline ml-2">اطلب الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
 
-    <!-- Scroll to Top -->
-    <button class="scroll-to-top magnetic">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+                <!-- Service Card 3 -->
+                <div class="service-card group bg-gradient-to-br from-green-50 to-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4">
+                    <div class="service-icon w-20 h-20 bg-gradient-to-r from-green-600 to-green-800 rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-tools text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-900 mb-4">فك وتركيب الأثاث</h3>
+                    <p class="text-gray-600 mb-6">فريق فني متخصص في فك وتركيب جميع أنواع الأثاث والأجهزة الكهربائية</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-yellow-600 font-bold">ابدأ من 300 جنيه</span>
+                        <button class="service-btn bg-green-700 hover:bg-green-800 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 group-hover:w-32">
+                            <span class="hidden group-hover:inline ml-2">اطلب الخدمة</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="new-script.js"></script>
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-8 left-8 z-50 flex flex-col space-y-4">
+        <a href="https://wa.me/201116870575" class="whatsapp-btn bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110">
+            <i class="fab fa-whatsapp text-xl"></i>
+        </a>
+        <a href="tel:01116870575" class="call-btn bg-yellow-500 hover:bg-yellow-600 text-green-900 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110">
+            <i class="fas fa-phone text-xl"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
